@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>⚖️ منصة حساب معدلات طلبة القانون الجنائي</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --primary:#0f172a;
+    --secondary:#1e293b;
+    --accent:#d4af37;
+    --success:#16a34a;
+    --fail:#dc2626;
+    --bg:#020617;
+    --card:rgba(15,23,42,0.92);
+    --input:#1e293b;
+    --text:#f8fafc;
+}
+
+/* Reset */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Cairo',sans-serif;
+    direction:rtl;
+    background:linear-gradient(135deg,#020617,#0f172a,#1e293b);
+    min-height:100vh;
+    color:var(--text);
+    padding:20px;
+}
+
+/* Container */
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+/* Card */
+
+.card{
+    background:var(--card);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.5);
+    animation:fadeIn 1s ease;
+}
+
+/* Header */
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.header img{
+    width:90px;
+    margin-bottom:15px;
+}
+
+.header h1{
+    color:var(--accent);
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.header p{
+    color:#cbd5e1;
+    font-size:15px;
+}
+
+/* Tabs */
+
+.tabs{
+    display:flex;
+    gap:10px;
+    margin-bottom:25px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.tab-btn{
+    background:var(--secondary);
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.tab-btn.active{
+    background:var(--accent);
+    color:black;
+    font-weight:bold;
+}
+
+.tab-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* Semester */
+
+.semester{
+    display:none;
+}
+
+.semester.active{
+    display:block;
+}
+
+/* Table */
+
+.table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:15px;
+}
+
+.table th{
+    background:var(--accent);
+    color:black;
+    padding:14px;
+}
+
+.table td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+/* Inputs */
+
+input{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    background:var(--input);
+    color:white;
+    text-align:center;
+    font-size:15px;
+}
+
+input:focus{
+    outline:none;
+    border:2px solid var(--accent);
+}
+
+input::placeholder{
+    color:#94a3b8;
+}
+
+/* Buttons */
+
+.buttons{
+    display:flex;
+    gap:15px;
+    margin-top:25px;
+    flex-wrap:wrap;
+}
+
+button{
+    flex:1;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.calc{
+    background:var(--accent);
+    color:black;
+    font-weight:bold;
+}
+
+.reset{
+    background:var(--fail);
+    color:white;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(212,175,55,0.4);
+}
+
+/* Result */
+
+.result{
+    margin-top:25px;
+    padding:18px;
+    border-radius:15px;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}
+
+/* Footer */
+
+.footer{
+    text-align:center;
+    margin-top:30px;
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.footer span{
+    color:var(--accent);
+    font-weight:bold;
+}
+
+/* Animation */
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .header h1{
+        font-size:1.5rem;
+    }
+
+    .table th,
+    .table td{
+        font-size:13px;
+        padding:8px;
+    }
+
+    button{
+        font-size:14px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<!-- Header -->
+
+<div class="header">
+    <img src="droit.jpg" alt="Logo">
+    <h1>⚖️ منصة حساب معدلات طلبة القانون الجنائي</h1>
+    <p>احسب معدلك بسهولة للسداسي الأول والثاني</p>
+</div>
+
+<!-- Tabs -->
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="showSemester(1)">السداسي الثاني</button>
+    <button class="tab-btn" onclick="showSemester(2)">السداسي الأول</button>
+</div>
+
+<!-- Semester 1 -->
+
+<div class="semester active" id="sem1">
+
+<table class="table">
+
+<tr>
+<th>المقياس</th>
+<th>TD</th>
+<th>الامتحان</th>
+<th>المعامل</th>
+</tr>
+
+<tr>
+<td>علم العقاب</td>
+<td><input type="number" id="s1td1"></td>
+<td><input type="number" id="s1c1"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>التفريض القضائي</td>
+<td><input type="number" id="s1td2"></td>
+<td><input type="number" id="s1c2"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>البيئة</td>
+<td><input type="number" id="s1td3"></td>
+<td><input type="number" id="s1c3"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>منهجية تحرير الوثائق القانونية</td>
+<td><input type="number" id="s1td4"></td>
+<td><input type="number" id="s1c4"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>إصلاح العدالة في الجزائر</td>
+<td>—</td>
+<td><input type="number" id="s1c5"></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>الذكاء الاصطناعي</td>
+<td>—</td>
+<td><input type="number" id="s1c6"></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>لغة أجنبية</td>
+<td>—</td>
+<td><input type="number" id="s1c7"></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>الإحصاء في العلوم الجنائية</td>
+<td>—</td>
+<td><input type="number" id="s1c8"></td>
+<td>1</td>
+</tr>
+
+</table>
+
+<div class="buttons">
+<button class="calc" onclick="calculerS1()">احسب المعدل</button>
+<button class="reset" onclick="resetS1()">إعادة الضبط</button>
+</div>
+
+<div class="result" id="result1"></div>
+
+</div>
+
+<!-- Semester 2 -->
+
+<div class="semester" id="sem2">
+
+<table class="table">
+
+<tr>
+<th>المقياس</th>
+<th>TD</th>
+<th>الامتحان</th>
+<th>المعامل</th>
+</tr>
+
+<tr>
+<td>علم الإجرام</td>
+<td><input type="number" id="s2td1"></td>
+<td><input type="number" id="s2c1"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>المسؤولية الجنائية</td>
+<td><input type="number" id="s2td2"></td>
+<td><input type="number" id="s2c2"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>التحقيق الجنائي</td>
+<td><input type="number" id="s2td3"></td>
+<td><input type="number" id="s2c3"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>منهجية تحرير الوثائق القانونية</td>
+<td><input type="number" id="s2td4"></td>
+<td><input type="number" id="s2c4"></td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>العدالة الدولية</td>
+<td>—</td>
+<td><input type="number" id="s2c5"></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>البرمجة</td>
+<td>—</td>
+<td><input type="number" id="s2c6"></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>لغة أجنبية</td>
+<td>—</td>
+<td><input type="number" id="s2c7"></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>طرق الطعن في الأحكام الجزائية</td>
+<td>—</td>
+<td><input type="number" id="s2c8"></td>
+<td>1</td>
+</tr>
+
+</table>
+
+<div class="buttons">
+<button class="calc" onclick="calculerS2()">احسب المعدل</button>
+<button class="reset" onclick="resetS2()">إعادة الضبط</button>
+</div>
+
+<div class="result" id="result2"></div>
+
+</div>
+
+</div>
+
+<footer class="footer">
+    Developed By <span>anis ham </span> © 2026
+</footer>
+
+</div>
+
+<script>
+
+/* Tabs */
+
+function showSemester(num){
+
+    document.querySelectorAll(".semester").forEach(el=>{
+        el.classList.remove("active");
+    });
+
+    document.querySelectorAll(".tab-btn").forEach(el=>{
+        el.classList.remove("active");
+    });
+
+    document.getElementById("sem"+num).classList.add("active");
+
+    event.target.classList.add("active");
+}
+
+/* Functions */
+
+function avecTD(td,cours,coef){
+    return ((td*0.4)+(cours*0.6))*coef;
+}
+
+function sansTD(cours,coef){
+    return cours*coef;
+}
+
+function afficherResult(result,moyenne){
+
+    if(moyenne >= 10){
+
+        result.style.background="#16a34a";
+        result.style.color="white";
+        result.innerHTML="✅ مبروك لقد نجحت<br>المعدل : "+moyenne.toFixed(2);
+
+    }else{
+
+        result.style.background="#dc2626";
+        result.style.color="white";
+        result.innerHTML="❌ للأسف أنت راسب<br>المعدل : "+moyenne.toFixed(2);
+    }
+}
+
+/* Semester 1 */
+
+function calculerS1(){
+
+    let total = 0;
+
+    total += avecTD(+s1td1.value,+s1c1.value,3);
+    total += avecTD(+s1td2.value,+s1c2.value,3);
+    total += avecTD(+s1td3.value,+s1c3.value,3);
+    total += avecTD(+s1td4.value,+s1c4.value,3);
+
+    total += sansTD(+s1c5.value,1);
+    total += sansTD(+s1c6.value,1);
+    total += sansTD(+s1c7.value,1);
+    total += sansTD(+s1c8.value,1);
+
+    let moyenne = total / 16;
+
+    afficherResult(result1,moyenne);
+}
+
+function resetS1(){
+
+    document.querySelectorAll("#sem1 input").forEach(i=>{
+        i.value="";
+    });
+
+    result1.innerHTML="";
+    result1.style.background="transparent";
+}
+
+/* Semester 2 */
+
+function calculerS2(){
+
+    let total = 0;
+
+    total += avecTD(+s2td1.value,+s2c1.value,3);
+    total += avecTD(+s2td2.value,+s2c2.value,3);
+    total += avecTD(+s2td3.value,+s2c3.value,3);
+    total += avecTD(+s2td4.value,+s2c4.value,2);
+
+    total += sansTD(+s2c5.value,1);
+    total += sansTD(+s2c6.value,1);
+    total += sansTD(+s2c7.value,1);
+    total += sansTD(+s2c8.value,1);
+
+    let moyenne = total / 15;
+
+    afficherResult(result2,moyenne);
+}
+
+function resetS2(){
+
+    document.querySelectorAll("#sem2 input").forEach(i=>{
+        i.value="";
+    });
+
+    result2.innerHTML="";
+    result2.style.background="transparent";
+}
+
+</script>
+
+</body>
+</html>
