@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+anis
 <title>⚖️ منصة حساب معدلات طلبة القانون الجنائي</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,7 @@
 }
 
 /* Reset */
+
 *{
     margin:0;
     padding:0;
@@ -40,12 +41,14 @@ body{
 }
 
 /* Container */
+
 .container{
     max-width:1000px;
     margin:auto;
 }
 
 /* Card */
+
 .card{
     background:var(--card);
     backdrop-filter:blur(15px);
@@ -53,9 +56,11 @@ body{
     border-radius:25px;
     padding:25px;
     box-shadow:0 10px 40px rgba(0,0,0,0.5);
+    animation:fadeIn 1s ease;
 }
 
 /* Header */
+
 .header{
     text-align:center;
     margin-bottom:30px;
@@ -78,6 +83,7 @@ body{
 }
 
 /* Tabs */
+
 .tabs{
     display:flex;
     gap:10px;
@@ -108,6 +114,7 @@ body{
 }
 
 /* Semester */
+
 .semester{
     display:none;
 }
@@ -117,6 +124,7 @@ body{
 }
 
 /* Table */
+
 .table{
     width:100%;
     border-collapse:collapse;
@@ -131,31 +139,27 @@ body{
 }
 
 .table td{
-    padding:16px; /* 👈 أكبر */
+    padding:12px;
     text-align:center;
     border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-/* Inputs - BIG UPDATED */
+/* Inputs */
+
 input{
     width:100%;
-    padding:16px 12px;   /* 👈 تكبير الخانة */
+    padding:10px;
     border:none;
-    border-radius:12px;
+    border-radius:10px;
     background:var(--input);
     color:white;
     text-align:center;
-    font-size:18px;      /* 👈 خط أكبر */
-    font-weight:600;
-    min-height:48px;     /* 👈 مناسب للموبايل */
-    transition:0.3s ease;
+    font-size:15px;
 }
 
 input:focus{
     outline:none;
     border:2px solid var(--accent);
-    transform:scale(1.05);
-    box-shadow:0 0 10px rgba(212,175,55,0.3);
 }
 
 input::placeholder{
@@ -163,6 +167,7 @@ input::placeholder{
 }
 
 /* Buttons */
+
 .buttons{
     display:flex;
     gap:15px;
@@ -197,6 +202,7 @@ button:hover{
 }
 
 /* Result */
+
 .result{
     margin-top:25px;
     padding:18px;
@@ -207,6 +213,7 @@ button:hover{
 }
 
 /* Footer */
+
 .footer{
     text-align:center;
     margin-top:30px;
@@ -219,7 +226,21 @@ button:hover{
     font-weight:bold;
 }
 
+/* Animation */
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
 /* Responsive */
+
 @media(max-width:768px){
 
     .header h1{
@@ -229,12 +250,7 @@ button:hover{
     .table th,
     .table td{
         font-size:13px;
-        padding:10px;
-    }
-
-    input{
-        font-size:16px;
-        padding:14px;
+        padding:8px;
     }
 
     button{
@@ -252,6 +268,7 @@ button:hover{
 <div class="card">
 
 <!-- Header -->
+
 <div class="header">
     <img src="droit.jpg" alt="Logo">
     <h1>⚖️ منصة حساب معدلات طلبة القانون الجنائي</h1>
@@ -259,15 +276,18 @@ button:hover{
 </div>
 
 <!-- Tabs -->
+
 <div class="tabs">
     <button class="tab-btn active" onclick="showSemester(1)">السداسي الثاني</button>
-    <button class="tab-btn" onclick="showSemester(2)">السداسي الأول </button>
+    <button class="tab-btn" onclick="showSemester(2)">السداسي الأول</button>
 </div>
 
 <!-- Semester 1 -->
+
 <div class="semester active" id="sem1">
 
 <table class="table">
+
 <tr>
 <th>المقياس</th>
 <th>TD</th>
@@ -275,14 +295,61 @@ button:hover{
 <th>المعامل</th>
 </tr>
 
-<tr><td>علم العقاب</td><td><input type="number" id="s1td1"></td><td><input type="number" id="s1c1"></td><td>3</td></tr>
-<tr><td>التفريض القضائي</td><td><input type="number" id="s1td2"></td><td><input type="number" id="s1c2"></td><td>3</td></tr>
-<tr><td>البيئة</td><td><input type="number" id="s1td3"></td><td><input type="number" id="s1c3"></td><td>3</td></tr>
-<tr><td>منهجية تحرير الوثائق القانونية</td><td><input type="number" id="s1td4"></td><td><input type="number" id="s1c4"></td><td>3</td></tr>
-<tr><td>إصلاح العدالة في الجزائر</td><td>—</td><td><input type="number" id="s1c5"></td><td>1</td></tr>
-<tr><td>الذكاء الاصطناعي</td><td>—</td><td><input type="number" id="s1c6"></td><td>1</td></tr>
-<tr><td>لغة أجنبية</td><td>—</td><td><input type="number" id="s1c7"></td><td>1</td></tr>
-<tr><td>الإحصاء في العلوم الجنائية</td><td>—</td><td><input type="number" id="s1c8"></td><td>1</td></tr>
+<tr>
+<td>علم العقاب</td>
+<td><input type="number" id="s1td1"></td>
+<td><input type="number" id="s1c1"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>التفريض القضائي</td>
+<td><input type="number" id="s1td2"></td>
+<td><input type="number" id="s1c2"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>البيئة</td>
+<td><input type="number" id="s1td3"></td>
+<td><input type="number" id="s1c3"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>منهجية تحرير الوثائق القانونية</td>
+<td><input type="number" id="s1td4"></td>
+<td><input type="number" id="s1c4"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>إصلاح العدالة في الجزائر</td>
+<td>—</td>
+<td><input type="number" id="s1c5"></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>الذكاء الاصطناعي</td>
+<td>—</td>
+<td><input type="number" id="s1c6"></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>لغة أجنبية</td>
+<td>—</td>
+<td><input type="number" id="s1c7"></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>الإحصاء في العلوم الجنائية</td>
+<td>—</td>
+<td><input type="number" id="s1c8"></td>
+<td>1</td>
+</tr>
 
 </table>
 
@@ -296,9 +363,11 @@ button:hover{
 </div>
 
 <!-- Semester 2 -->
+
 <div class="semester" id="sem2">
 
 <table class="table">
+
 <tr>
 <th>المقياس</th>
 <th>TD</th>
@@ -306,14 +375,62 @@ button:hover{
 <th>المعامل</th>
 </tr>
 
-<tr><td>علم الإجرام</td><td><input type="number" id="s2td1"></td><td><input type="number" id="s2c1"></td><td>3</td></tr>
-<tr><td>المسؤولية الجنائية</td><td><input type="number" id="s2td2"></td><td><input type="number" id="s2c2"></td><td>3</td></tr>
-<tr><td>التحقيق الجنائي</td><td><input type="number" id="s2td3"></td><td><input type="number" id="s2c3"></td><td>3</td></tr>
-<tr><td>منهجية تحرير الوثائق القانونية</td><td><input type="number" id="s2td4"></td><td><input type="number" id="s2c4"></td><td>2</td></tr>
-<tr><td>العدالة الدولية</td><td>—</td><td><input type="number" id="s2c5"></td><td>1</td></tr>
-<tr><td>البرمجة</td><td>—</td><td><input type="number" id="s2c6"></td><td>1</td></tr>
-<tr><td>لغة أجنبية</td><td>—</td><td><input type="number" id="s2c7"></td><td>1</td></tr>
-<tr><td>طرق الطعن في الأحكام الجزائية</td><td>—</td><td><input type="number" id="s2c8"></td><td>1</td></tr>
+<tr>
+<td>علم الإجرام</td>
+<td><input type="number" id="s2td1"></td>
+<td><input type="number" id="s2c1"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>المسؤولية الجنائية</td>
+<td><input type="number" id="s2td2"></td>
+<td><input type="number" id="s2c2"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>التحقيق الجنائي</td>
+<td><input type="number" id="s2td3"></td>
+<td><input type="number" id="s2c3"></td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>منهجية تحرير الوثائق القانونية</td>
+<td><input type="number" id="s2td4"></td>
+<td><input type="number" id="s2c4"></td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>العدالة الدولية</td>
+<td>—</td>
+<td><input type="number" id="s2c5"></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>البرمجة</td>
+<td>—</td>
+<td><input type="number" id="s2c6"></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>لغة أجنبية</td>
+<td>—</td>
+<td><input type="number" id="s2c7"></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>طرق الطعن في الأحكام الجزائية</td>
+<td>—</td>
+<td><input type="number" id="s2c8"></td>
+<td>1</td>
+</tr>
+
 </table>
 
 <div class="buttons">
@@ -328,7 +445,7 @@ button:hover{
 </div>
 
 <footer class="footer">
-    Developed By <span>anis ham</span> © 2026
+    Developed By <span>anis ham </span> © 2026
 </footer>
 
 </div>
@@ -336,14 +453,24 @@ button:hover{
 <script>
 
 /* Tabs */
+
 function showSemester(num){
-    document.querySelectorAll(".semester").forEach(el=>el.classList.remove("active"));
-    document.querySelectorAll(".tab-btn").forEach(el=>el.classList.remove("active"));
+
+    document.querySelectorAll(".semester").forEach(el=>{
+        el.classList.remove("active");
+    });
+
+    document.querySelectorAll(".tab-btn").forEach(el=>{
+        el.classList.remove("active");
+    });
+
     document.getElementById("sem"+num).classList.add("active");
+
     event.target.classList.add("active");
 }
 
-/* Math */
+/* Functions */
+
 function avecTD(td,cours,coef){
     return ((td*0.4)+(cours*0.6))*coef;
 }
@@ -355,18 +482,23 @@ function sansTD(cours,coef){
 function afficherResult(result,moyenne){
 
     if(moyenne >= 10){
+
         result.style.background="#16a34a";
         result.style.color="white";
         result.innerHTML="✅ مبروك لقد نجحت<br>المعدل : "+moyenne.toFixed(2);
+
     }else{
+
         result.style.background="#dc2626";
         result.style.color="white";
         result.innerHTML="❌ للأسف أنت راسب<br>المعدل : "+moyenne.toFixed(2);
     }
 }
 
-/* S1 */
+/* Semester 1 */
+
 function calculerS1(){
+
     let total = 0;
 
     total += avecTD(+s1td1.value,+s1c1.value,3);
@@ -384,8 +516,20 @@ function calculerS1(){
     afficherResult(result1,moyenne);
 }
 
-/* S2 */
+function resetS1(){
+
+    document.querySelectorAll("#sem1 input").forEach(i=>{
+        i.value="";
+    });
+
+    result1.innerHTML="";
+    result1.style.background="transparent";
+}
+
+/* Semester 2 */
+
 function calculerS2(){
+
     let total = 0;
 
     total += avecTD(+s2td1.value,+s2c1.value,3);
@@ -403,15 +547,12 @@ function calculerS2(){
     afficherResult(result2,moyenne);
 }
 
-/* Reset */
-function resetS1(){
-    document.querySelectorAll("#sem1 input").forEach(i=>i.value="");
-    result1.innerHTML="";
-    result1.style.background="transparent";
-}
-
 function resetS2(){
-    document.querySelectorAll("#sem2 input").forEach(i=>i.value="");
+
+    document.querySelectorAll("#sem2 input").forEach(i=>{
+        i.value="";
+    });
+
     result2.innerHTML="";
     result2.style.background="transparent";
 }
